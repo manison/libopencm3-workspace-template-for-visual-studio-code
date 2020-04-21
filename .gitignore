@@ -1,0 +1,10 @@
+*.o
+*.d
+*.bin
+*.elf
+*.hex
+*.list
+*.map
+*.srec
+generated.*.ld
+.vscode/*.state.json

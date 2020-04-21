@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "gcc",
+            "includePath": [
+                "${workspaceFolder}\\libopencm3\\include"
+            ],
+            "defines": [
+                "STM32F3"
+            ],
+            "compilerPath": "${config:cortex-vscode.armToolchainPath}\\arm-none-eabi-gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "gcc-x86"
+        }
+    ],
+    "version": 4
+}

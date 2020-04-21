@@ -1,0 +1,38 @@
+{
+    // Fix these settings or put them into global settings.json.
+
+    // Path to MSYS installation (required for make utility)
+    // https://sourceforge.net/projects/mingw/files/MSYS/Base/msys-core/msys-1.0.11/MSYS-1.0.11.exe/download
+    "cortex-vscode.msysPath": "C:\\msys\\1.0\\bin",
+
+    // Path to GCC instalation
+    // https://github.com/xpack-dev-tools/arm-none-eabi-gcc-xpack/releases
+    // https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
+    "cortex-vscode.armToolchainPath": "C:\\gcc\\gcc-arm-none-eabi\\bin",
+
+    // Path to OpenOCD instalation
+    // https://github.com/xpack-dev-tools/openocd-xpack/releases
+    "cortex-vscode.openocdPath": "C:\\openocd\\bin\\openocd.exe",
+
+    "cortex-vscode.python27Path": "C:\\Python27",
+
+
+    // Target specific settings
+
+    // Name of the output executable module
+    "cortex-vscode.targetName": "test",
+
+    // Full device name
+    "cortex-vscode.deviceName": "stm32f373cc",
+
+    // Name of the SVD file for the device
+    "cortex-vscode.svdFileName": "stm32f373.svd",
+
+    // Name of the configuration file for OpenOCD
+    "cortex-vscode.openocdBoardCfg": "stm32f3generic.cfg",
+
+
+    // Settings for Cortex-Debug extension
+    "cortex-debug.armToolchainPath": "${config:cortex-vscode.armToolchainPath}",
+    "cortex-debug.openocdPath": "${config:cortex-vscode.openocdPath}"
+}

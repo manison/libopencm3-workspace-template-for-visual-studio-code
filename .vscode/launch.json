@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debug",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}\\${config:cortex-vscode.targetName}.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "configFiles": [
+                "${workspaceFolder}\\.vscode\\openocd\\board\\${config:cortex-vscode.openocdBoardCfg}"
+            ],
+            "svdFile": "${workspaceFolder}\\.vscode\\svd\\${config:cortex-vscode.svdFileName}",
+            "preLaunchTask": "build debug"
+        }
+    ]
+}
