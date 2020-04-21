@@ -27,8 +27,14 @@ BINARY ?= target
 ###############################################################################
 # Source files
 
-SRC_DIRS	= ./src
-SRCS		= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
+AUTO_SRC_DIRS	= ./src
+AUTO_SRCS		= $(shell find $(AUTO_SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
+
+FREERTOS_DIR	= ./FreeRTOS/kernel
+FREERTOS_SRC	= $(wildcard $(FREERTOS_DIR)/*.c)
+
+SRCS		= $(AUTO_SRCS) $(FREERTOS_SRC)
+
 OBJS		= $(addsuffix .o,$(basename $(SRCS)))
 
 include $(OPENCM3_DIR)/mk/genlink-config.mk
@@ -56,6 +62,7 @@ TGT_CXXFLAGS	+= -fno-common -ffunction-sections -fdata-sections
 TGT_CPPFLAGS	+= -MD
 TGT_CPPFLAGS	+= -Wall -Wundef
 TGT_CPPFLAGS	+= $(DEFS)
+TGT_CPPFLAGS	+= -I$(FREERTOS_DIR)/include
 
 ###############################################################################
 # Linker flags
