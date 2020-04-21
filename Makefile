@@ -27,7 +27,9 @@ BINARY ?= target
 ###############################################################################
 # Source files
 
-OBJS		= main.o
+SRC_DIRS	= ./src
+SRCS		= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
+OBJS		= $(addsuffix .o,$(basename $(SRCS)))
 
 include $(OPENCM3_DIR)/mk/genlink-config.mk
 
