@@ -30,8 +30,10 @@ BINARY ?= target
 AUTO_SRC_DIRS	= ./src
 AUTO_SRCS		= $(shell find $(AUTO_SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 
-FREERTOS_DIR	= ./FreeRTOS/kernel
-FREERTOS_SRC	= $(wildcard $(FREERTOS_DIR)/*.c)
+FREERTOS_DIR	= ./FreeRTOS
+FREERTOS_PORT	= $(FREERTOS_DIR)/ports/$(genlink_family)
+FREERTOS_SRC	= $(wildcard $(FREERTOS_DIR)/kernel/*.c) $(wildcard $(FREERTOS_PORT)/*.c)
+FREERTOS_INC	= -I$(FREERTOS_DIR)/kernel/include -I$(FREERTOS_PORT)
 
 SRCS		= $(AUTO_SRCS) $(FREERTOS_SRC)
 
@@ -62,7 +64,7 @@ TGT_CXXFLAGS	+= -fno-common -ffunction-sections -fdata-sections
 TGT_CPPFLAGS	+= -MD
 TGT_CPPFLAGS	+= -Wall -Wundef
 TGT_CPPFLAGS	+= $(DEFS)
-TGT_CPPFLAGS	+= -I$(FREERTOS_DIR)/include
+TGT_CPPFLAGS	+= $(FREERTOS_INC)
 
 ###############################################################################
 # Linker flags
@@ -91,6 +93,13 @@ hex: $(BINARY).hex
 srec: $(BINARY).srec
 list: $(BINARY).list
 GENERATED_BINARIES=$(BINARY).elf $(BINARY).bin $(BINARY).hex $(BINARY).srec $(BINARY).list $(BINARY).map
+
+# Define a helper macro for debugging make errors online
+# you can type "make print-OPENCM3_DIR" and it will show you
+# how that ended up being resolved by all of the included
+# makefiles.
+print-%:
+	@echo $*=$($*)
 
 images: $(BINARY).images
 
